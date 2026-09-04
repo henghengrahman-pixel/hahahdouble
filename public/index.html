@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>DANA Tools</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="loginView" class="login-shell hidden">
+  <div class="login-card">
+    <div class="brand-mark">D</div>
+    <h1>DANA Tools</h1>
+    <p>Masuk untuk mengakses dashboard.</p>
+    <form id="loginForm">
+      <label>ID Admin</label>
+      <input id="loginId" autocomplete="username" required>
+      <label>Password</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" required>
+      <div id="loginError" class="form-error"></div>
+      <button type="submit" class="btn primary full">Masuk</button>
+    </form>
+  </div>
+</div>
+
+<div id="appView" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark small">D</div><div><b>DANA Tools</b><span>Utility Dashboard</span></div></div>
+    <nav>
+      <button class="nav-item active" data-tab="formatter">Formatter</button>
+      <button class="nav-item" data-tab="combine">Gabungkan Data</button>
+    </nav>
+    <div class="side-bottom"><button id="logoutBtn" class="nav-item danger">Keluar</button></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><h2 id="pageTitle">Formatter</h2><p id="pageSub">Rapikan nomor DANA dan nominal sebelum dipindahkan ke template.</p></div>
+      <div class="user-chip"><span class="dot"></span><span id="userName">admin</span></div>
+    </header>
+
+    <section id="formatter" class="tab-panel active">
+      <div class="stats-grid">
+        <div class="stat"><span>Nomor diproses</span><strong id="statDana">0</strong></div>
+        <div class="stat"><span>Nominal diproses</span><strong id="statAmount">0</strong></div>
+        <div class="stat"><span>Total nominal</span><strong id="statTotal">Rp0</strong></div>
+        <div class="stat"><span>Perlu dicek</span><strong id="statWarn">0</strong></div>
+      </div>
+
+      <div class="two-col">
+        <article class="panel">
+          <div class="panel-head"><div><h3>Nomor DANA</h3><p>Paste data mentah, satu data per baris.</p></div><span class="badge">8059</span></div>
+          <textarea id="danaInput" placeholder="DANA, 081324495434, Nama"></textarea>
+          <div class="actions"><button id="processDana" class="btn primary">Proses</button><button id="copyDana" class="btn">Copy hasil</button><button id="clearDana" class="btn ghost">Bersihkan</button></div>
+          <label class="output-label">Hasil</label>
+          <textarea id="danaOutput" class="output" readonly placeholder="Hasil nomor akan tampil di sini"></textarea>
+          <div id="danaWarnings" class="warning-box hidden"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head"><div><h3>Nominal</h3><p>Hapus koma dan karakter format nominal.</p></div><span class="badge">IDR</span></div>
+          <textarea id="amountInput" placeholder="3,000,000&#10;201,000&#10;50,000"></textarea>
+          <div class="actions"><button id="processAmount" class="btn primary">Proses</button><button id="copyAmount" class="btn">Copy hasil</button><button id="clearAmount" class="btn ghost">Bersihkan</button></div>
+          <label class="output-label">Hasil</label>
+          <textarea id="amountOutput" class="output" readonly placeholder="Hasil nominal akan tampil di sini"></textarea>
+        </article>
+      </div>
+    </section>
+
+    <section id="combine" class="tab-panel">
+      <article class="panel wide">
+        <div class="panel-head"><div><h3>Gabungkan Data</h3><p>Pasangkan nomor dan nominal berdasarkan urutan baris.</p></div><div class="actions compact"><button id="buildCombined" class="btn primary">Gabungkan</button><button id="copyCombined" class="btn">Copy CSV</button><button id="downloadCsv" class="btn">Download CSV</button></div></div>
+        <div id="combineStatus" class="combine-status">Belum ada data yang digabungkan.</div>
+        <div class="table-wrap"><table><thead><tr><th>No.</th><th>Nomor DANA</th><th>Nominal</th></tr></thead><tbody id="combinedBody"><tr><td colspan="3" class="empty">Belum ada data.</td></tr></tbody></table></div>
+      </article>
+    </section>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

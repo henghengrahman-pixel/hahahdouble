@@ -1,0 +1,9 @@
+{
+  "name": "dana-formatter-dashboard",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Dashboard formatter DANA dan nominal dengan login admin untuk Railway",
+  "main": "server.js",
+  "scripts": {"start": "node server.js"},
+  "engines": {"node": ">=20"}
+}
